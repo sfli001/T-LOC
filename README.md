@@ -142,6 +142,6 @@ Copyright (C) 2021, Shaofang Li
 Authors: Shaofang Li
 
 A patent has been applied for this program. For commercial users, please contact me at shaofangli2021@hotmail.com.
-This program is free for academic users. For publication, please cite "T-LOC: a comprehensive tool to localize and characterize the T-DNA integration sites", Li et al 2022 Plant Physiology.
+This program is free for academic users. 
 
 

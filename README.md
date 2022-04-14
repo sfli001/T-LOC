@@ -117,23 +117,6 @@ Control
 	The folder contains the middle files to generate control clip ID from plants without TDNA insertions
 
 
-Contacts and bug reports
-------------------------
-
-Shaofang Li
-shaofangli2021@hotmail.com
-
-If you found a bug or mistake in this project, we would like to know about it.
-Before you send us the bug report though, please check the following:
-
-1. Are you using the latest version? The bug you found may already have been
-   fixed.
-2. Check that your input is in the correct format and you have selected the
-   correct options.
-3. Please reduce your input to the smallest possible size that still produces
-   the bug; we will need your input data to reproduce the problem, and the
-   smaller you can make it, the easier it will be.
-
 
 Copyright and License Information
 ---------------------------------

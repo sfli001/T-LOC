@@ -69,7 +69,7 @@ B1 = B1[B1[,22] %in% names(Bt1),]
 
 C1 = A1[A1[,7]=="type2",]
 C1 = data.frame(C1, anchor = as.numeric( gsub("\\d+M|S","",as.character(C1[,3]))),seq = character(length(C1[,1])), matchREF_P = numeric(length(C1[,1])),matchREF_N = numeric(length(C1[,1])),matchTDNA_P = numeric(length(C1[,1])),matchTDNA_N = numeric(length(C1[,1])), matchREF_Mismatch_P = numeric(length(C1[,1])),matchREF_Mismatch_N = numeric(length(C1[,1])),matchTDNA_Mismatch_P = numeric(length(C1[,1])),matchTDNA_Mismatch_N = numeric(length(C1[,1])),matchREF_Insert_P = numeric(length(C1[,1])),matchREF_Insert_N = numeric(length(C1[,1])),matchTDNA_Insert_P = numeric(length(C1[,1])),matchTDNA_Insert_N = numeric(length(C1[,1])),ID = paste(C1[,6], "type2",sep="_"), REF_match = rep("false", length(C1[,1])))
-C1[,9] = substr(as.character(C1[,4]),150-C1[,8]+1,150)
+C1[,9] = substr(as.character(C1[,4]),nchar(C1[,4])-C1[,8]+1,nchar(C1[,4]))
 C1 = C1[order(C1[,6],-C1[,8]),]
 C1 = C1[C1[,8]> anchor & C1[,8]< nchar(C1[1,4]) -anchor,]
 Ct1 = table(C1[,22])

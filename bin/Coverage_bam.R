@@ -5,6 +5,7 @@ args <- commandArgs(trailingOnly = TRUE)
 ##args[3] = Output coverage pdf  files
 ##args[4] = folder to put middle Bam files at mosaic region with flanking 2000bp and coverage data
 ##args[5] = Sample_name
+##args[6] = bin_path
 Sample_name = ""
 if(length(args)>4){
 	Sample_name  = args[5]
@@ -127,7 +128,7 @@ for (num in 1:length(insert_l)){
     system(cmd1)
     cmd2 = paste("samtools index ", args[4],"/",args[5], "_Mosaic_",num,".bam",sep="")
     system(cmd2)
-    cmd3 = paste("python /home/shaofangli/SOFT/T_LOC/bin/Coverage.py --bam ", args[4], "/",args[5], "_Mosaic_",num,".bam", " --Region ", region1 ," --output ", args[4],"/",args[5], "_Mosaic_",num,"_coverage.txt",sep="")
+    cmd3 = paste("python ",args[6], "Coverage.py --bam ", args[4], "/",args[5], "_Mosaic_",num,".bam", " --Region ", region1 ," --output ", args[4],"/",args[5], "_Mosaic_",num,"_coverage.txt",sep="")
     system(cmd3)
     cov = read.table(paste(args[4],"/",args[5], "_Mosaic_",num,"_coverage.txt",sep=""))
     barplot(cov[,2],ylim = c(0, as.integer(max(cov[,2]) * 2/100+1) * 100),las =1,main = Sample_name,names.arg = cov[,1],xlab = gsub(":.*","",region1),ylab = "Read number")

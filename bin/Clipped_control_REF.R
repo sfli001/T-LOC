@@ -4,6 +4,7 @@ library(ShortRead)
 ##agrs[1] = one of multipe control clipped sam files seperated by comma
 ##args[2] = output control ID file
 ##args[3] = the anchor length
+anchor = args[3]
 files = unlist(strsplit(args[1],","))
 print (files)
 ID = character()

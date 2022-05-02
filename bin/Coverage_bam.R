@@ -128,7 +128,7 @@ for (num in 1:length(insert_l)){
     system(cmd1)
     cmd2 = paste("samtools index ", args[4],"/",args[5], "_Mosaic_",num,".bam",sep="")
     system(cmd2)
-    cmd3 = paste("python ",args[6], "Coverage.py --bam ", args[4], "/",args[5], "_Mosaic_",num,".bam", " --Region ", region1 ," --output ", args[4],"/",args[5], "_Mosaic_",num,"_coverage.txt",sep="")
+    cmd3 = paste("python ",args[6], "/Coverage.py --bam ", args[4], "/",args[5], "_Mosaic_",num,".bam", " --Region ", region1 ," --output ", args[4],"/",args[5], "_Mosaic_",num,"_coverage.txt",sep="")
     system(cmd3)
     cov = read.table(paste(args[4],"/",args[5], "_Mosaic_",num,"_coverage.txt",sep=""))
     barplot(cov[,2],ylim = c(0, as.integer(max(cov[,2]) * 2/100+1) * 100),las =1,main = Sample_name,names.arg = cov[,1],xlab = gsub(":.*","",region1),ylab = "Read number")

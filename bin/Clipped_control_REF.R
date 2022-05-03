@@ -28,7 +28,7 @@ for (i in 1:length(files)){
 	B1 =  a1[a1[,7]=="type1",]
 	B1 = data.frame(B1,anchor = as.numeric( gsub("S.*","",as.character(B1[,3]))),ID = paste(B1[,2], B1[,5],B1[,7],sep="_"))
 	B1 = B1[B1[,8]> anchor & B1[,8]< nchar(B1[1,4]) -anchor,]
-	ID = unique(c(ID, as.character(B1[,11]), as.character(C1[,11])))
+	ID = unique(c(ID, as.character(B1[,9]), as.character(C1[,9])))
 }
 
 write.table(ID, args[2], quote = FALSE, row.names = FALSE, col.names = FALSE)

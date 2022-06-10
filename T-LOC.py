@@ -269,6 +269,10 @@ if (control_ID):
     os.system(cmd)
     logging.debug("output mosaic read from clipped reads in reference\n")
 
+cmd = "Rscript %s/TDNA_Cov.R %s %s %s %s %s %s/%s_TDNA_Cov.pdf " % (bin_path,bamR, bamT, genome, TDNA,Sample_name,Result_path, Sample_name)
+logging.debug(cmd)
+os.system(cmd)
+logging.debug("Produce the TDNA coverage\n")
 
 cmd = "Rscript %s/Clipped_TDNA.R %s %s %s  %s/%s_mosaic_REF_TDNA.txt  %s/%s_mosaic_TDNA_TDNA.txt  %s/%s_mosaic_all.txt %s %s %s" % (bin_path,genome, TDNA, clipped_samT,TDNA_path, Sample_name,TDNA_path,Sample_name,TDNA_path,Sample_name, anchor, read_min_TDNA,  insert)
 logging.debug(cmd)

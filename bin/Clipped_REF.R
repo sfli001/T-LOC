@@ -28,7 +28,7 @@ if(length(args)>9){
 }
 
 insert = 30
-if(length(args)>9){
+if(length(args)>10){
         insert = as.integer( args[11])
 }
 
@@ -416,7 +416,7 @@ for( i in 1:length(ALL[,1])){
             re = data.frame(ALL[i,c(1:6,8)],seqREFPos = seq2, seqTDNAPos = seq1 ,TDNA_ID = id,genome_ID  = ALL[i,22] ,match_type = "mismatch_TDNA",ID_type= "type3:TDNAPos_RefPos", ID_all= paste(id,":REF__",ALL[i,2], "__", ALL[i,5],sep=""))
             ALL_REF= rbind(ALL_REF,re)
         }
-        if(grepl(";insert_TDNA_POS", ALL[i,23])){
+        if(grepl(";insert_\\w+_TDNA_POS", ALL[i,23])){
             id = gsub("__\\d+__","__", ALL[i,20])
           re = data.frame(ALL[i,c(1:6,8)],seqREFPos = seq2, seqTDNAPos = seq1 ,TDNA_ID = id,genome_ID  = ALL[i,22] ,match_type = "insertion_TDNA3end",ID_type= "type3:TDNAPos_RefPos", ID_all= paste(id,":REF__",ALL[i,2], "__", ALL[i,5],sep=""))
           ALL_REF= rbind(ALL_REF,re)
@@ -435,7 +435,7 @@ for( i in 1:length(ALL[,1])){
             re = data.frame(ALL[i,c(1:6,8)],seqREFPos = seq2, seqTDNAPos = seq1RC ,TDNA_ID = id,genome_ID  = ALL[i,22] ,match_type = "mismatch_TDNA",ID_type= "type4:TDNANeg_RefPos", ID_all= paste(id,":REF__",ALL[i,2], "__", ALL[i,5],sep=""))
             ALL_REF = rbind(ALL_REF,re)
         }
-        if(grepl(";insert_TDNA_NEG", ALL[i,23])){
+        if(grepl(";insert_\\w+_TDNA_NEG", ALL[i,23])){
             id = gsub("__\\d+$|__\\d+;",";", ALL[i,21])
             id = gsub(";$","", id)
           re = data.frame(ALL[i,c(1:6,8)],seqREFPos = seq2, seqTDNAPos = seq1RC ,TDNA_ID = id,genome_ID  = ALL[i,22] ,match_type = "insertion_TDNA5end",ID_type= "type4:TDNANeg_RefPos", ID_all= paste(id,":REF__",ALL[i,2], "__", ALL[i,5],sep=""))
@@ -452,7 +452,7 @@ for( i in 1:length(ALL[,1])){
                   re = data.frame(ALL[i,c(1:6,8)],REF_seqPOS1 = seq1, REF_seqPOS2 = seq2,REF_ID1= id, REF_ID2 = ALL[i,22] ,match_type = "mismatch", ID_type= "type1:REFPos_REFPos", ID_all= paste(id,":REF__",ALL[i,2], "__",  ALL[i,5],sep=""))
                   ALL_REFREF = rbind(ALL_REFREF,re)
                 }
-                if(grepl(";insert_REF_POS", ALL[i,23])){
+                if(grepl(";insert_\\w+_REF_POS", ALL[i,23])){
                   id = gsub("__\\d+__","__", ALL[i,18])
                   re = data.frame(ALL[i,c(1:6,8)],REF_seqPOS1 = seq1, REF_seqPOS2 = seq2,REF_ID1= id, REF_ID2 = ALL[i,22] ,match_type = "insert_REF3end", ID_type= "type1:REFPos_REFPos", ID_all= paste(id,":REF__",ALL[i,2], "__",  ALL[i,5],sep=""))
                   ALL_REFREF = rbind(ALL_REFREF,re)
@@ -471,7 +471,7 @@ for( i in 1:length(ALL[,1])){
                   ALL_REFREF = rbind(ALL_REFREF,re)
                 }
 
-                if(grepl(";insert_REF_NEG", ALL[i,23])){
+                if(grepl(";insert_\\w+_REF_NEG", ALL[i,23])){
                     id = gsub("__\\d+$|__\\d+;",";", ALL[i,19])
                     id = gsub(";$","", id)
                   re = data.frame(ALL[i,c(1:6,8)],REF_seqPOS1 = seq1RC, REF_seqPOS2 = seq2,REF_ID1= id, REF_ID2 = ALL[i,22] ,match_type = "insert_REF5end", ID_type= "type2:REFNeg_REFPos", ID_all= paste(id,":REF__",ALL[i,2], "__", ALL[i,5],sep=""))
@@ -499,7 +499,7 @@ for( i in 1:length(ALL[,1])){
                        re = data.frame(ALL[i,c(1:6,8)],seqREFPos = seq2, seqTDNAPos = seq1 ,TDNA_ID = id,genome_ID  = ALL[i,22] ,match_type = "mismatch",ID_type= "type1:RefPos_TDNAPos", ID_all= paste("REF__",ALL[i,2], "__", ALL[i,6],":",id, sep=""))
                      ALL_REF = rbind(ALL_REF,re)
                    }
-                   if(grepl(";insert_TDNA_POS", ALL[i,23])){
+                   if(grepl(";insert_\\w+_TDNA_POS", ALL[i,23])){
                        id = gsub("__\\d+$|__\\d+;",";", ALL[i,20])
                        id = gsub(";$","", id)
                        re = data.frame(ALL[i,c(1:6,8)],seqREFPos = seq2, seqTDNAPos = seq1 ,TDNA_ID = id,genome_ID  = ALL[i,22] ,match_type = "insertion_TDNA5end",ID_type= "type1:RefPos_TDNAPos", ID_all= paste("REF__",ALL[i,2], "__", ALL[i,6],":",id, sep=""))
@@ -517,7 +517,7 @@ for( i in 1:length(ALL[,1])){
                        re = data.frame(ALL[i,c(1:6,8)],seqREFPos = seq2, seqTDNAPos = seq1RC ,TDNA_ID = id,genome_ID  = ALL[i,22] ,match_type = "mismatch",ID_type= "type2:RefPos_TDNANeg", ID_all= paste("REF__",ALL[i,2], "__", ALL[i,6],":",id, sep=""))
                      ALL_REF = rbind(ALL_REF,re)
                    }
-                   if(grepl(";insert_TDNA_NEG", ALL[i,23])){
+                   if(grepl(";insert_\\w+_TDNA_NEG", ALL[i,23])){
                        id = gsub("__\\d+__","__", ALL[i,21])
                        re = data.frame(ALL[i,c(1:6,8)],seqREFPos = seq2, seqTDNAPos = seq1RC ,TDNA_ID = id,genome_ID  = ALL[i,22] ,match_type = "insertion_TDNA3end",ID_type= "type2:RefPos_TDNANeg", ID_all= paste("REF__",ALL[i,2], "__", ALL[i,6],":",id, sep=""))
                      ALL_REF = rbind(ALL_REF,re)
@@ -536,7 +536,7 @@ for( i in 1:length(ALL[,1])){
                                            re = data.frame(ALL[i,c(1:6,8)],REF_seqPOS1 = seq2, REF_seqPOS2 = seq1,REF_ID1 = ALL[i,22], REF_ID2 = id ,match_type = "mismatch", ID_type= "type3:REFPos_REFPos", ID_all= paste("REF__",ALL[i,2],"__", ALL[i,6],":", id,sep=""))
                                          ALL_REFREF = rbind(ALL_REFREF,re)
                                        }
-                                       if(grepl(";insert_REF_POS", ALL[i,23])){
+                                       if(grepl(";insert_\\w+_REF_POS", ALL[i,23])){
                                            id = gsub("__\\d+$|__\\d+;",";", ALL[i,18])
                                            id = gsub(";$","", id)
                                            re = data.frame(ALL[i,c(1:6,8)],REF_seqPOS1 = seq2, REF_seqPOS2 = seq1,REF_ID1 = ALL[i,22], REF_ID2 = id ,match_type = "insert_REF5end", ID_type= "type3:REFPos_REFPos", ID_all= paste("REF__",ALL[i,2],"__", ALL[i,6],":", id,sep=""))
@@ -555,7 +555,7 @@ for( i in 1:length(ALL[,1])){
                                          ALL_REFREF = rbind(ALL_REFREF,re)
                                        }
 
-                                       if(grepl(";insert_REF_NEG", ALL[i,23])){
+                                       if(grepl(";insert_\\w+_REF_NEG", ALL[i,23])){
                                            id = gsub("__\\d+__","__", ALL[i,19])
                                            re = data.frame(ALL[i,c(1:6,8)],REF_seqPOS1 = seq2, REF_seqPOS2 = seq1RC,REF_ID1 = ALL[i,22], REF_ID2 = id ,match_type = "insert_REF3end", ID_type= "type4:REFPos_REFNeg", ID_all= paste("REF__",ALL[i,2],"__", ALL[i,6],":", id,sep=""))
                                          ALL_REFREF = rbind(ALL_REFREF,re)

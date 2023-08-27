@@ -1,5 +1,5 @@
 args <- commandArgs(trailingOnly = TRUE)
-### using  Mosaic REF_TDNA, Reference alignment files  as input and output coverage at the mosaic sites in pdf files 
+### using  Mosaic REF_TDNA, Reference alignment files  as input and output coverage at the mosaic sites in pdf files
 ##args[1] = Mosaic REF_TDNA files
 ##args[2] = Reference Alignment files
 ##args[3] = Output coverage pdf  files
@@ -71,7 +71,7 @@ if(dim(ID1)[1]==0){
             insert_r = append(insert_r, as.character(ID2[n,1]))
             m= m+1
             n = n+1
-        } else if(n+1<= length(ID2[,1]) & ID1[,3]==ID2[n+1,3] & abs( ID1[m,4]- ID2[n+1,4]) < 10000  ){
+        } else if(n+1<= length(ID2[,1]) & ID1[m,3]==ID2[n+1,3] & abs( ID1[m,4]- ID2[n+1,4]) < 10000  ){
             insert_l = append(insert_l, "")
             insert_r = append(insert_r, as.character(ID2[n,1]))
             insert_l = append(insert_l, as.character(ID1[m,1]))

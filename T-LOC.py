@@ -21,40 +21,28 @@ clipped_samR = ""
 clipped_samT = ""
 Mosaic_length = 500
 Sample_name = 'ss'
-#bam="/home/shaofangli/OFF-target/DNA/46bAG_s1.sorted.bam"
-#clipped_sam="/home/shaofangli/OFF-target/DNA/TDNA_mosaic/46bAG_s1_clipped.sam"
-#genome="/home/shaofangli/genome/rice/Kitaake/OsativaKitaake_499_v3.0.fa"
-#genome_Bwa="/home/shaofangli/genome/rice/Kitaake/Bwaindex/OsativaKitaake_499_v3.0.fa"
-#TDNA= "/home/shaofangli/OFF-target/TDNA/Bwa/V46bAG.fa"
-#TDNA_Bwa = "/home/shaofangli/OFF-target/TDNA/Bwa/V46bAG.fa"
-#LB= "2375:2399"
-#RB="9994:10018"
-#anchor = 30
-#output = "/home/shaofangli/SOFT/T_LOC/test/46bAG"
-#full programs from the begining require fastq, control_fastq, Reference fasta, TDNA fasta
-##full programs from the bwa alignment files requires 
 for opt, arg in options:
-	if opt in ('--fastq'):
-		fastq = arg
+        if opt in ('--fastq'):
+                fastq = arg
         elif opt in ('--control_bamR'):
                 control_bamR = arg
         elif opt in ('--control_fastq'):
                 control_fastq = arg
         elif opt in ('--control_ID'):
                 control_ID = arg
-	elif opt in ('--bamR'):
+        elif opt in ('--bamR'):
                 bamR = arg
         elif opt in ('--bamT'):
                 bamT = arg
-	elif opt in ('--genome'):
-               	genome = arg
-	elif opt in ('--TDNA'):
+        elif opt in ('--genome'):
+                genome = arg
+        elif opt in ('--TDNA'):
                 TDNA = arg
-	elif opt in ('--genome_Bwa'):
+        elif opt in ('--genome_Bwa'):
                 genome_Bwa = arg
         elif opt in ('--TDNA_Bwa'):
                 TDNA_Bwa = arg
-	elif opt in ('--anchor'):
+        elif opt in ('--anchor'):
                 anchor = int(arg)
         elif opt in ('--insert'):
                 insert = int(arg)
@@ -64,7 +52,7 @@ for opt, arg in options:
                 read_min_REF = int(arg)
         elif opt in ('--Mosaic_length'):
                 Mosaic_length = int(arg)
-	elif opt in ('--resume'):
+        elif opt in ('--resume'):
                 resume  = arg
         elif opt in ('--Sample_name'):
                 Sample_name  = arg
@@ -75,41 +63,41 @@ if(not fastq):
         if( not bamR ):
                 print "Please provide either fastq reads or reference alignment files"
                 run ="false"
-	if( not bamT ):
+        if( not bamT ):
                 print "Please provide either fastq reads or TDNA alignment files"
                 run ="false"
 if(not genome or not TDNA or not output):
-	print "please provide the reference genome sequence and TDNA sequences and fastq reads"
-	run = "false"
+        print "please provide the reference genome sequence and TDNA sequences and fastq reads"
+        run = "false"
 
 if (run =="false"):
-	print "Not enough parameters!"
-	print "Program : ", sys.argv[0]
-	print "          A python program to locate the T_DNA insertion site.\n"
+        print "Not enough parameters!"
+        print "Program : ", sys.argv[0]
+        print "          A python program to locate the T_DNA insertion site.\n"
         print "Usage :", sys.argv[0], " Required Parameters;"
-	print "Usage :", sys.argv[0], " --fastq: the sequence fastq files, paired reads were separated by comma;"
-	print "Usage :", sys.argv[0], " --bamR: sorted bam files of alignment to reference genome;"
+        print "Usage :", sys.argv[0], " --fastq: the sequence fastq files, paired reads were separated by comma;"
+        print "Usage :", sys.argv[0], " --bamR: sorted bam files of alignment to reference genome;"
         print "Usage :", sys.argv[0], " --bamT: sorted bam files of TDNA alignment;"
-	print "Usage :", sys.argv[0], " --genome: fasta format of given genome sequences;"
-	print "Usage :", sys.argv[0], " --TDNA: fasta format of given T-DNA sequences;"
+        print "Usage :", sys.argv[0], " --genome: fasta format of given genome sequences;"
+        print "Usage :", sys.argv[0], " --TDNA: fasta format of given T-DNA sequences;"
         print "Usage :", sys.argv[0], " Optional  Parameters;"
         print "Usage :", sys.argv[0], " --control_bamR: a series of bam files from plants without T-DNA insertion, different bam files were separated by comma;"
         print "Usage :", sys.argv[0], " --control_fastq: a series of fastq files from plants without T-DNA insertion, different fastq files were sperated by colon, paired reads were separated by comma;"
         print "Usage :", sys.argv[0], " --control_ID: the control ID files;"
         print "Usage :", sys.argv[0], " --genome_Bwa: bwa index of given reference genome;"
         print "Usage :", sys.argv[0], " --TDNA_Bwa: bwa index of given T-DNA sequences;"
-	print "Usage :", sys.argv[0], " --anchor: The minimal anchor length required for the clipped reads. The default value is 20;"
+        print "Usage :", sys.argv[0], " --anchor: The minimal anchor length required for the clipped reads. The default value is 20;"
         print "Usage :", sys.argv[0], " --insert: The maximal insertion sequence length at the TDNA insertion sites. The default value is 3;"
         print "Usage :", sys.argv[0], " --read_min_REF: The minimal number of mosaic reads bwteen two reference positions. The default value is 4. It can be set to any integer larger or equal to 2. If the program run slow, please increase the number.;"
         print "Usage :", sys.argv[0], " --read_min_TDNA: The minimal number of mosaic reads required for each TDNA insertion sites as well as mosaic reads between two TDNA positions. The default value is 2. It can be set to any integer larger or equal to 2. ;"
         print "Usage :", sys.argv[0], " --Mosaic_length: the length of output sequences of each mosaic side;"
         print "Usage :", sys.argv[0], " --Sample_name: sample names will be used to label output files,defalut is ss;"
         print "Usage :", sys.argv[0], " --resume: Whether to resume previous run. The default is true;"
-	print "Usage :", sys.argv[0], " -o/--output: The output directory. The default is current directory;"
-	print datetime.datetime.now()
-	print "Author  : Shaofang Li"
-	print "Contact : shaofangli2021@hotmail.com"
-	sys.exit()
+        print "Usage :", sys.argv[0], " -o/--output: The output directory. The default is current directory;"
+        print datetime.datetime.now()
+        print "Author  : Shaofang Li"
+        print "Contact : shaofangli2021@hotmail.com"
+        sys.exit()
 
 def listToString(ss):
   Str = '';
@@ -151,22 +139,22 @@ if (not os.path.exists(Control_path)):
     os.system("mkdir %s" % Control_path)
 ##do the bwa alignment to the reference genome
 if(not bamR):
-	logging.debug("#######################Run fastq alignment with fastq files#######################\n")
+        logging.debug("#######################Run fastq alignment with fastq files#######################\n")
         if(resume=="true" and os.path.exists("%s/Bwa_genome/Done_Bwa_index_genome.txt" %output)):
             genome_Bwa = "%s/Bwa_genome/%s" %(output, re.sub(".*\\/","",genome))
-	if(not genome_Bwa):
-		cmd1 = "mkdir %s/Bwa_genome" % output
-		cmd2 = "cp %s %s/Bwa_genome/" %(genome, output)
-		cmd3 = "bwa index  %s/Bwa_genome/%s" %(output, re.sub(".*\\/","",genome))
-		logging.debug(cmd1)
-		logging.debug(cmd2)
-		logging.debug(cmd3)
-		os.system(cmd1)
+        if(not genome_Bwa):
+                cmd1 = "mkdir %s/Bwa_genome" % output
+                cmd2 = "cp %s %s/Bwa_genome/" %(genome, output)
+                cmd3 = "bwa index  %s/Bwa_genome/%s" %(output, re.sub(".*\\/","",genome))
+                logging.debug(cmd1)
+                logging.debug(cmd2)
+                logging.debug(cmd3)
+                os.system(cmd1)
                 os.system(cmd2)
                 os.system(cmd3)
-		genome_Bwa ="%s/Bwa_genome/%s" %(output, re.sub(".*\\/","",genome))
-		logging.debug("Generate the bwa index for the reference genome\n")
-		fw = open("%s/Bwa_genome/Done_Bwa_index_genome.txt" %output,"w")
+                genome_Bwa ="%s/Bwa_genome/%s" %(output, re.sub(".*\\/","",genome))
+                logging.debug("Generate the bwa index for the reference genome\n")
+                fw = open("%s/Bwa_genome/Done_Bwa_index_genome.txt" %output,"w")
                 fw.close()
                 logging.debug("Output the file for finishing the indexing the genome\n")
         if(resume=="true" and os.path.exists("%s/Reference_%s.sorted.bam.bai" %(REF_path, Sample_name))):
@@ -175,8 +163,8 @@ if(not bamR):
             cmd_bwa1 = "bwa mem %s %s > %s/Reference_%s.sam 2> %s/Reference_bwa_%s.txt" % (genome_Bwa, re.sub(","," ", fastq), REF_path,Sample_name,REF_path,Sample_name)
             bamR = "%s/Reference_%s.sorted.bam" % (REF_path,Sample_name)
             logging.debug(cmd_bwa1)
-	    os.system(cmd_bwa1)
-	    logging.debug("using bwa mem  to do the alignment of reference genome\n")
+            os.system(cmd_bwa1)
+            logging.debug("using bwa mem  to do the alignment of reference genome\n")
             cmd1 = "samtools view -bhST %s %s/Reference_%s.sam -o %s/Reference_%s.bam" % (genome, REF_path,Sample_name, REF_path,Sample_name)
             cmd2 = "samtools sort -o %s/Reference_%s.sorted.bam %s/Reference_%s.bam"% (REF_path,Sample_name, REF_path,Sample_name)
             cmd3 = "samtools index %s" % (bamR)
@@ -239,6 +227,7 @@ if(not control_ID and control_bamR):
     for i in range(0, len(C_bamR)):
         cmd = "samtools view " + C_bamR[i] + "|awk '$6~/[S]/' - > " + Control_path + "/Control_clipped_" + str(i+1)+ ".sam"
         logging.debug(cmd)
+        os.system(cmd)
         clipped_controlR = clipped_controlR + "," + Control_path + "/Control_clipped_" + str(i+1) + ".sam"
     clipped_controlR = re.sub(",","", clipped_controlR)
     control_ID = Control_path + "/Control_id.txt"
@@ -273,6 +262,7 @@ cmd = "Rscript %s/TDNA_Cov.R %s %s %s %s %s %s/%s_TDNA_Cov.pdf " % (bin_path,bam
 logging.debug(cmd)
 os.system(cmd)
 logging.debug("Produce the TDNA coverage\n")
+
 
 cmd = "Rscript %s/Clipped_TDNA.R %s %s %s  %s/%s_mosaic_REF_TDNA.txt  %s/%s_mosaic_TDNA_TDNA.txt  %s/%s_mosaic_all.txt %s %s %s" % (bin_path,genome, TDNA, clipped_samT,TDNA_path, Sample_name,TDNA_path,Sample_name,TDNA_path,Sample_name, anchor, read_min_TDNA,  insert)
 logging.debug(cmd)
